@@ -1,4 +1,4 @@
-<img width="750" alt="FROG GAME" src="https://github.com/edam/frog-game/assets/3274122/14779841-2d39-459b-ad3f-da8031d3d532">
+<img width="750" alt="FROG GAME" src="https://github.com/edam/frog-game/assets/3274122/8c949276-ede4-471a-99cd-561592b8abb0">
 
 Frog Game
 ---------
