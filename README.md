@@ -11,9 +11,9 @@ secrets!
 Screenshots
 -----------
 
-<img width="300" alt="Screenshot 2024-05-02 at 11 27 50 PM" src="https://github.com/edam/frog-game/assets/3274122/dfcfff4a-a244-4661-b4f2-89eb125a1370">
-<img width="300" alt="Screenshot 2024-05-02 at 11 28 40 PM" src="https://github.com/edam/frog-game/assets/3274122/d6c2de68-afcd-409c-9852-29efd6b77866">
-<img width="300" alt="Screenshot 2024-05-02 at 11 29 25 PM" src="https://github.com/edam/frog-game/assets/3274122/ec86b241-816c-45fa-b3d7-4e0a8cfa4f2d">
+<img width="200" alt="Screenshot 2024-05-02 at 11 27 50 PM" src="https://github.com/edam/frog-game/assets/3274122/dfcfff4a-a244-4661-b4f2-89eb125a1370">
+<img width="200" alt="Screenshot 2024-05-02 at 11 28 40 PM" src="https://github.com/edam/frog-game/assets/3274122/d6c2de68-afcd-409c-9852-29efd6b77866">
+<img width="200" alt="Screenshot 2024-05-02 at 11 29 25 PM" src="https://github.com/edam/frog-game/assets/3274122/ec86b241-816c-45fa-b3d7-4e0a8cfa4f2d">
 
 
 Technical Notes
