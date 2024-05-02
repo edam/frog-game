@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyiuodklbmri4"]
+
+[ext_resource type="Script" path="res://scenes/barricade/barricade.gd" id="1_symjb"]
+[ext_resource type="Texture2D" uid="uid://bvu7vot7iqpd2" path="res://scenes/barricade/Idle.png" id="2_kiorg"]
+[ext_resource type="Texture2D" uid="uid://dh4yeoos68fwm" path="res://scenes/barricade/Chain.png" id="3_3yypl"]
+[ext_resource type="Texture2D" uid="uid://bbu64ch6r7fy4" path="res://scenes/barricade/Break.png" id="4_20c35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28d4y"]
+size = Vector2(0, 0)
+
+[node name="Barricade" type="ReferenceRect"]
+offset_right = 64.0
+offset_bottom = 256.0
+border_width = 4.0
+script = ExtResource("1_symjb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(2.28571, 2.66667)
+texture = ExtResource("2_kiorg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(2.28571, 2.66667)
+texture = ExtResource("3_3yypl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_28d4y")
+
+[node name="Elements" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Bits" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BitTemplate" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BitTemplate"]
+texture_filter = 1
+position = Vector2(-8, -8)
+scale = Vector2(2, 2)
+texture = ExtResource("4_20c35")
+region_enabled = true
+region_rect = Rect2(0, 0, 28, 24)
+
+[node name="Sprite2D2" type="Sprite2D" parent="BitTemplate"]
+texture_filter = 1
+position = Vector2(8, -8)
+scale = Vector2(2, 2)
+texture = ExtResource("4_20c35")
+region_enabled = true
+region_rect = Rect2(28, 0, 28, 24)
+
+[node name="Sprite2D3" type="Sprite2D" parent="BitTemplate"]
+texture_filter = 1
+position = Vector2(-8, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("4_20c35")
+region_enabled = true
+region_rect = Rect2(56, 0, 28, 24)
+
+[node name="Sprite2D4" type="Sprite2D" parent="BitTemplate"]
+texture_filter = 1
+position = Vector2(8, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("4_20c35")
+region_enabled = true
+region_rect = Rect2(84, 0, 28, 24)

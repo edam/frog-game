@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnxt07irjuegt"]
+
+[ext_resource type="Script" path="res://scenes/spikes/spikes.gd" id="1_415im"]
+[ext_resource type="Texture2D" uid="uid://btuuoo3qj6sjc" path="res://scenes/spikes/Idle.png" id="2_6lv53"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qcrr"]
+size = Vector2(32, 16)
+
+[node name="Spikes" type="ColorRect"]
+offset_top = -64.0
+offset_right = 128.0
+color = Color(1, 0, 0, 0.529412)
+script = ExtResource("1_415im")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("2_6lv53")
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+position = Vector2(16, 56)
+shape = SubResource("RectangleShape2D_5qcrr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

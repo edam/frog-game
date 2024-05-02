@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbqrerfa40h7v"]
+
+[ext_resource type="Script" path="res://scenes/lever/lever.gd" id="1_y1kp7"]
+[ext_resource type="Texture2D" uid="uid://br63le6esdxaj" path="res://scenes/lever/Checkpoint (No Flag).png" id="2_do8a8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npht7"]
+size = Vector2(40, 64)
+
+[node name="Lever" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_y1kp7")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+clip_contents = true
+offset_top = -64.0
+offset_right = 40.0
+border_width = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ReferenceRect"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, 32)
+rotation = 0.785398
+scale = Vector2(2, 2)
+texture = ExtResource("2_do8a8")
+offset = Vector2(8, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, -32)
+shape = SubResource("RectangleShape2D_npht7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

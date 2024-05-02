@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://2fjdkxgac182"]
+
+[sub_resource type="Curve" id="Curve_3xe2r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.395398, 0.344248), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_la6qv"]
+curve = SubResource("Curve_3xe2r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0pto0"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(576, 320, 0)
+emission_shape_scale = Vector3(0.5, 0.5, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1152, 640, 0)
+angle_min = 102.9
+angle_max = 102.9
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -98, 0)
+attractor_interaction_enabled = false
+scale_min = 2.0
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_la6qv")
+
+[node name="CaveBg" type="ColorRect"]
+clip_contents = true
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0.129412, 0.121569, 0.184314, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_0pto0")
+lifetime = 3.0
+preprocess = 3.0
+speed_scale = 0.3
+trail_enabled = true

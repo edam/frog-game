@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://0kjv0nksycaq"]
+
+[ext_resource type="Script" path="res://scenes/water/water.gd" id="1_wxmua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srhnr"]
+
+[node name="Water" type="ColorRect"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -864.0
+offset_bottom = -464.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.211765, 0.552941, 0.411765)
+script = ExtResource("1_wxmua")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+color = Color(0, 0.345098, 0.752941, 0.647059)
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+width = 5.0
+default_color = Color(0.639216, 1, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_srhnr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

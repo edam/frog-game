@@ -1,0 +1,600 @@
+[gd_scene load_steps=39 format=3 uid="uid://cghutskhmedla"]
+
+[ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_b4m8p"]
+[ext_resource type="Texture2D" uid="uid://b7cm0jwtjj1tf" path="res://scenes/hud/small-empty-cup.png" id="2_ouyq3"]
+[ext_resource type="Texture2D" uid="uid://djq8emk1j03c7" path="res://scenes/hud/small-frog.png" id="2_pxh1h"]
+[ext_resource type="Texture2D" uid="uid://rqhaynhwbkde" path="res://scenes/hud/small-pink.png" id="3_h4v20"]
+[ext_resource type="Texture2D" uid="uid://dq13w0kx0hcmc" path="res://scenes/hud/small-cup.png" id="4_gc8b4"]
+[ext_resource type="Texture2D" uid="uid://ca3l5u8uighg7" path="res://scenes/cup/End (Pressed) (64x64).png" id="6_5xltm"]
+[ext_resource type="Texture2D" uid="uid://cekqxirc7rqv1" path="res://scenes/hud/Confetti (16x16).png" id="7_dmw1u"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_6gtti"]
+
+[sub_resource type="Gradient" id="Gradient_b38j5"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.501961)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bswac"]
+gradient = SubResource("Gradient_b38j5")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_ytwe2"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_okl17"]
+default_font = SubResource("SystemFont_ytwe2")
+default_font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_plwwr"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_rs7n5"]
+default_font = SubResource("SystemFont_plwwr")
+default_font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_bhm73"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_882dd"]
+default_font = SubResource("SystemFont_bhm73")
+default_font_size = 40
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7aro"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rhl8"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djpx7"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shham"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyred"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywhqj"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g66qj"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cbdy"]
+atlas = ExtResource("6_5xltm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s8ghj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7aro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rhl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djpx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shham")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyred")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywhqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g66qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cbdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g66qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywhqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyred")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shham")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djpx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rhl8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p7js3"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_0bv24"]
+min_value = -1.0
+_data = [Vector2(0, -0.465947), 0.0, 0.0, 0, 0, Vector2(1, 0.545218), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0wgra"]
+curve = SubResource("Curve_0bv24")
+
+[sub_resource type="Gradient" id="Gradient_gebh2"]
+offsets = PackedFloat32Array(0.0428212, 0.11335, 0.695214, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4glrk"]
+gradient = SubResource("Gradient_gebh2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1ec86"]
+particle_flag_disable_z = true
+angle_min = -521.6
+angle_max = 260.8
+angle_curve = SubResource("CurveTexture_0wgra")
+direction = Vector3(-1, -1, 0)
+spread = 32.244
+initial_velocity_min = 137.81
+initial_velocity_max = 400.0
+gravity = Vector3(0, 198, 0)
+damping_min = 10.0
+damping_max = 10.0
+attractor_interaction_enabled = false
+color_ramp = SubResource("GradientTexture1D_4glrk")
+anim_offset_max = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qh4ft"]
+particle_flag_disable_z = true
+angle_min = -521.6
+angle_max = 260.8
+angle_curve = SubResource("CurveTexture_0wgra")
+direction = Vector3(1, -1, 0)
+spread = 32.244
+initial_velocity_min = 137.81
+initial_velocity_max = 400.0
+gravity = Vector3(0, 198, 0)
+damping_min = 10.0
+damping_max = 10.0
+attractor_interaction_enabled = false
+color_ramp = SubResource("GradientTexture1D_4glrk")
+anim_offset_max = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etsb6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_wnf8h"]
+resource_name = "congrats"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Congrats:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Chat/..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_congrats"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n1tnq"]
+resource_name = "flash-arrow"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.396078, 0.396078, 0.396078, 1), Color(2, 2, 2, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fqjay"]
+resource_name = "title"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TitleMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%LevelMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2, 3.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%LevelMenu/VBoxContainer/Label2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Chat/..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_after_title"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tnvph"]
+resource_name = "title-reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TitleMenu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsynp"]
+_data = {
+"congrats": SubResource("Animation_wnf8h"),
+"flash-arrow": SubResource("Animation_n1tnq"),
+"title": SubResource("Animation_fqjay"),
+"title-reset": SubResource("Animation_tnvph")
+}
+
+[node name="HUD" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_b4m8p")
+fade = 1.0
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0, 0, 0, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(575.75, 31.75)
+scale = Vector2(1152.5, 64.5)
+mesh = SubResource("QuadMesh_6gtti")
+texture = SubResource("GradientTexture2D_bswac")
+
+[node name="MenuButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+text = "="
+
+[node name="TitleMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_okl17")
+
+[node name="Label" type="Label" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 96.0
+offset_right = 1005.0
+offset_bottom = 372.0
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = -80
+theme_override_font_sizes/font_size = 130
+text = "FROG
+GAME"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="TitleMenu"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 557.0
+offset_bottom = 564.0
+rotation = -0.23911
+texture = ExtResource("2_pxh1h")
+
+[node name="Button" type="Button" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 416.0
+offset_right = 960.0
+offset_bottom = 480.0
+text = "START"
+
+[node name="Button2" type="Button" parent="TitleMenu"]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 488.0
+offset_right = 960.0
+offset_bottom = 552.0
+text = "QUIT"
+flat = true
+
+[node name="LevelMenu" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rs7n5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelMenu/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL 1"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="LevelMenu/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "
+(there is only 1 level)"
+horizontal_alignment = 1
+
+[node name="PauseMenu" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 512.0
+theme = SubResource("Theme_882dd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "CONTINUE"
+
+[node name="Button3" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "QUIT	"
+
+[node name="Congrats" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(552, 256)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_s8ghj")
+frame_progress = 0.501417
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Congrats"]
+material = SubResource("CanvasItemMaterial_p7js3")
+position = Vector2(60, -6.4)
+scale = Vector2(0.1, 0.1)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_1ec86")
+texture = ExtResource("7_dmw1u")
+lifetime = 4.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Congrats"]
+material = SubResource("CanvasItemMaterial_p7js3")
+position = Vector2(-55.2, -6.4)
+scale = Vector2(0.1, 0.1)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_qh4ft")
+texture = ExtResource("7_dmw1u")
+lifetime = 4.0
+
+[node name="Lives" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Cups" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CupBgs" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Templates" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CupBg" type="TextureRect" parent="Templates"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+clip_contents = true
+offset_left = 1072.0
+offset_top = 16.0
+offset_right = 1096.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+texture = ExtResource("2_ouyq3")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Frog" type="TextureRect" parent="Templates"]
+texture_filter = 1
+clip_contents = true
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+texture = ExtResource("2_pxh1h")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Pink" type="TextureRect" parent="Templates"]
+texture_filter = 1
+clip_contents = true
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+texture = ExtResource("3_h4v20")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Cup" type="TextureRect" parent="Templates"]
+texture_filter = 1
+clip_contents = true
+offset_left = 1072.0
+offset_top = 16.0
+offset_right = 1096.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+texture = ExtResource("4_gc8b4")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="Chat" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etsb6")
+metadata/_edit_group_ = true
+
+[node name="Text" type="RichTextLabel" parent="Chat"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 488.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+bbcode_enabled = true
+text = "Testing, testing, *one* two three. I once saw a donkey riding on a man."
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Frog" type="TextureRect" parent="Chat"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_pxh1h")
+
+[node name="Pink" type="TextureRect" parent="Chat"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_h4v20")
+
+[node name="Polygon2D" type="Polygon2D" parent="Chat"]
+position = Vector2(776, 88)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 15.9305, 0, 32, 0, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../Chat")
+libraries = {
+"": SubResource("AnimationLibrary_qsynp")
+}
+autoplay = "flash-arrow"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="TitleMenu/Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TitleMenu/Button2" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Button" to="." method="_on_unpause_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Button3" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://vaam0jdfj0ge"]
+
+[ext_resource type="Texture2D" uid="uid://bw62vg17tnhyd" path="res://gfx/tiles/Terrain (16x16).png" id="1_btyag"]
+[ext_resource type="Script" path="res://scenes/platform/platform.gd" id="1_r2pek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dx7e5"]
+size = Vector2(64, 24)
+
+[sub_resource type="Animation" id="Animation_xato6"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"anim_stop"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ne6sp"]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4r42"]
+_data = {
+"appear": SubResource("Animation_xato6"),
+"disappear": SubResource("Animation_ne6sp")
+}
+
+[node name="Platform" type="ReferenceRect"]
+offset_right = 192.0
+offset_bottom = 32.0
+border_color = Color(0, 1, 0, 1)
+border_width = 4.0
+script = ExtResource("1_r2pek")
+
+[node name="Parts" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+position = Vector2(32, 32)
+scale = Vector2(4, 4)
+texture = ExtResource("1_btyag")
+hframes = 22
+vframes = 11
+frame = 17
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(32, 12)
+shape = SubResource("RectangleShape2D_dx7e5")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_y4r42")
+}
