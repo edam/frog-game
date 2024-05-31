@@ -43,7 +43,7 @@ func _physics_process(delta):
 			var boost = JUMP_VELOCITY + (PINK_JUMP_BOOST if _is_pink else 0)
 			velocity.y = -boost
 			get_node('/root/Main').sound('jump')
-		_jump = false
+	_jump = false
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -79,7 +79,7 @@ func _process(_delta):
 	_direction = Input.get_axis('left', 'right') if input else 0.0
 
 	# jump
-	_jump = Input.is_action_just_pressed('jump') if input else false
+	_jump = _jump or (Input.is_action_just_pressed('jump') if input else false)
 
 	# interact
 	if input && Input.is_action_just_pressed('up') && is_on_floor():

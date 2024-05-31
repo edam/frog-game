@@ -1,6 +1,6 @@
 extends Node
 
-var _window_size
+var _window_size: Vector2i
 var _action_list: Dictionary
 var _interact_func = null
 var _interact_name = ''
@@ -14,7 +14,10 @@ var _game = null
 
 
 func _ready() -> void:
-	_window_size = get_tree().root.size
+	var viewport_width = ProjectSettings.get("display/window/size/viewport_width")
+	var viewport_height = ProjectSettings.get("display/window/size/viewport_height")
+	_window_size = Vector2i(viewport_width, viewport_height)
+	print(type_string(typeof(_window_size)))
 	%HUD.max_cups = len(%Interactions.find_children('cup*'))
 	%HUD.lives = game_state('lives', 3)
 	%HUD.cups = game_state('cups', 0)
