@@ -13,7 +13,7 @@ var _num = 0
 @onready var _main = get_node('/root/Main')
 
 func _ready() -> void:
-	_smashed = _main.game_state(self.name, false)
+	_smashed = _main.game.state(self.name, false)
 
 	if !_smashed:
 		# move collision box to mirror parent
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		#_remove_bits()
 
 		if _smashed && _num == 0:
-			_main.release_camera(self.name)
+			_main.game.release_camera(self.name)
 
 		if _smashed && _num > 0:
 			_num -= 1
@@ -80,11 +80,11 @@ func smash():
 
 	print("barricade smashed: ", self.name)
 	_smashed = true
-	_main.set_game_state(self.name, true)
+	_main.game.set_state(self.name, true)
 
 	# remove collision box
 	%CollisionShape2D.position = Vector2(0, 0)
 	var colbox = %CollisionShape2D.shape as RectangleShape2D
 	colbox.size = Vector2(0, 0)
 
-	_main.capture_camera(self.name, self.position)
+	_main.game.capture_camera(self.name, self.position)

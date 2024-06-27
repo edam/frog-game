@@ -464,6 +464,7 @@ script = ExtResource("1_l203w")
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -64)
+rotation = 0.436332
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_atnqg")
 animation = &"frog-running"

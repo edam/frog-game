@@ -5,7 +5,7 @@ extends ReferenceRect
 var _on = false
 
 func _ready() -> void:
-	_on = _main.game_state(self.name, false)
+	_on = _main.game.state(self.name, false)
 	modulate = Color(1, 1, 1, 1) if _on else Color(1, 1, 1, 0)
 	%StaticBody2D.collision_layer = 1 if _on else 0
 
@@ -30,10 +30,10 @@ func _ready() -> void:
 func toggle(on: bool) -> void:
 	if _on != on:
 		_on = on
-		_main.set_game_state(self.name, on)
+		_main.game.set_state(self.name, on)
 		%AnimationPlayer.play('appear' if on else 'disappear')
 		%StaticBody2D.collision_layer = 1 if on else 0
-		if on: _main.capture_camera(self.name, self.position)
+		if on: _main.game.capture_camera(self.name, self.position)
 
 func anim_stop():
-	_main.release_camera(self.name)
+	_main.game.release_camera(self.name)

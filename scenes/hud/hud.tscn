@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cghutskhmedla"]
+[gd_scene load_steps=37 format=3 uid="uid://cghutskhmedla"]
 
 [ext_resource type="Script" path="res://scenes/hud/hud.gd" id="1_b4m8p"]
 [ext_resource type="Texture2D" uid="uid://b7cm0jwtjj1tf" path="res://scenes/hud/small-empty-cup.png" id="2_ouyq3"]
@@ -7,6 +7,26 @@
 [ext_resource type="Texture2D" uid="uid://dq13w0kx0hcmc" path="res://scenes/hud/small-cup.png" id="4_gc8b4"]
 [ext_resource type="Texture2D" uid="uid://ca3l5u8uighg7" path="res://scenes/cup/End (Pressed) (64x64).png" id="6_5xltm"]
 [ext_resource type="Texture2D" uid="uid://cekqxirc7rqv1" path="res://scenes/hud/Confetti (16x16).png" id="7_dmw1u"]
+
+[sub_resource type="SystemFont" id="SystemFont_plwwr"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_rs7n5"]
+default_font = SubResource("SystemFont_plwwr")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etsb6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_6gtti"]
 
@@ -18,20 +38,6 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.501961)
 gradient = SubResource("Gradient_b38j5")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_ytwe2"]
-subpixel_positioning = 0
-
-[sub_resource type="Theme" id="Theme_okl17"]
-default_font = SubResource("SystemFont_ytwe2")
-default_font_size = 40
-
-[sub_resource type="SystemFont" id="SystemFont_plwwr"]
-subpixel_positioning = 0
-
-[sub_resource type="Theme" id="Theme_rs7n5"]
-default_font = SubResource("SystemFont_plwwr")
-default_font_size = 40
 
 [sub_resource type="SystemFont" id="SystemFont_bhm73"]
 subpixel_positioning = 0
@@ -175,18 +181,8 @@ attractor_interaction_enabled = false
 color_ramp = SubResource("GradientTexture1D_4glrk")
 anim_offset_max = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etsb6"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-anti_aliasing = false
+[sub_resource type="Animation" id="Animation_376ln"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_wnf8h"]
 resource_name = "congrats"
@@ -194,7 +190,7 @@ length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Congrats:modulate")
+tracks/0/path = NodePath("Congrats:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -206,7 +202,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Chat/..")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -225,7 +221,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/path = NodePath("Chat/Polygon2D:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -236,80 +232,53 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_fqjay"]
-resource_name = "title"
-length = 4.0
+resource_name = "start-level-screen"
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../TitleMenu:modulate")
+tracks/0/path = NodePath("LevelMenu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%LevelMenu:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1, 2, 3.1, 4),
+"times": PackedFloat32Array(1, 2, 3.5, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/2/type = "value"
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelMenu/VBoxContainer/Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3, 3.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%LevelMenu/VBoxContainer/Label2:modulate")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("%Chat/..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(4),
+"times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_after_title"
+"method": &"_after_level_screen"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_tnvph"]
-resource_name = "title-reset"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%TitleMenu:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qsynp"]
 _data = {
+"RESET": SubResource("Animation_376ln"),
 "congrats": SubResource("Animation_wnf8h"),
 "flash-arrow": SubResource("Animation_n1tnq"),
-"title": SubResource("Animation_fqjay"),
-"title-reset": SubResource("Animation_tnvph")
+"start-level-screen": SubResource("Animation_fqjay")
 }
 
 [node name="HUD" type="CanvasLayer"]
@@ -317,79 +286,8 @@ process_mode = 3
 script = ExtResource("1_b4m8p")
 fade = 1.0
 
-[node name="Fade" type="ColorRect" parent="."]
-unique_name_in_owner = true
-offset_right = 1152.0
-offset_bottom = 640.0
-color = Color(0, 0, 0, 0)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(575.75, 31.75)
-scale = Vector2(1152.5, 64.5)
-mesh = SubResource("QuadMesh_6gtti")
-texture = SubResource("GradientTexture2D_bswac")
-
-[node name="MenuButton" type="Button" parent="."]
-unique_name_in_owner = true
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 64.0
-offset_bottom = 64.0
-focus_mode = 0
-text = "="
-
-[node name="TitleMenu" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme = SubResource("Theme_okl17")
-
-[node name="Label" type="Label" parent="TitleMenu"]
-layout_mode = 0
-offset_left = 632.0
-offset_top = 96.0
-offset_right = 1005.0
-offset_bottom = 372.0
-theme_override_constants/outline_size = 15
-theme_override_constants/shadow_outline_size = 0
-theme_override_constants/line_spacing = -80
-theme_override_font_sizes/font_size = 130
-text = "FROG
-GAME"
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="TitleMenu"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 32.0
-offset_top = 176.0
-offset_right = 557.0
-offset_bottom = 564.0
-rotation = -0.23911
-texture = ExtResource("2_pxh1h")
-
-[node name="Button" type="Button" parent="TitleMenu"]
-layout_mode = 0
-offset_left = 688.0
-offset_top = 416.0
-offset_right = 960.0
-offset_bottom = 480.0
-text = "START"
-
-[node name="Button2" type="Button" parent="TitleMenu"]
-layout_mode = 0
-offset_left = 688.0
-offset_top = 488.0
-offset_right = 960.0
-offset_bottom = 552.0
-text = "QUIT"
-flat = true
-
 [node name="LevelMenu" type="CenterContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -414,9 +312,79 @@ text = "
 (there is only 1 level)"
 horizontal_alignment = 1
 
-[node name="PauseMenu" type="CenterContainer" parent="."]
+[node name="Chat" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
+offset_left = 192.0
+offset_top = 448.0
+offset_right = 1024.0
+offset_bottom = 576.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_etsb6")
+metadata/_edit_group_ = true
+
+[node name="Text" type="RichTextLabel" parent="Chat"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 488.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+bbcode_enabled = true
+text = "Testing, testing, *one* two three. I once saw a donkey riding on a man."
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Frog" type="TextureRect" parent="Chat"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_pxh1h")
+
+[node name="Pink" type="TextureRect" parent="Chat"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 80.0
+offset_bottom = 64.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_h4v20")
+
+[node name="Polygon2D" type="Polygon2D" parent="Chat"]
+position = Vector2(776, 88)
+antialiased = true
+polygon = PackedVector2Array(0, 0, 15.9305, 0, 32, 0, 16, 16)
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0, 0, 0, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(575.75, 31.75)
+scale = Vector2(1152.5, 64.5)
+mesh = SubResource("QuadMesh_6gtti")
+texture = SubResource("GradientTexture2D_bswac")
+
+[node name="MenuButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+text = "="
+
+[node name="PauseMenu" type="CenterContainer" parent="."]
+unique_name_in_owner = true
 offset_left = 128.0
 offset_top = 128.0
 offset_right = 1024.0
@@ -535,66 +503,14 @@ texture = ExtResource("4_gc8b4")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="Chat" type="Panel" parent="."]
-unique_name_in_owner = true
-visible = false
-texture_filter = 1
-offset_left = 192.0
-offset_top = 448.0
-offset_right = 1024.0
-offset_bottom = 576.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_etsb6")
-metadata/_edit_group_ = true
-
-[node name="Text" type="RichTextLabel" parent="Chat"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 160.0
-offset_top = 16.0
-offset_right = 488.0
-offset_bottom = 64.0
-scale = Vector2(2, 2)
-bbcode_enabled = true
-text = "Testing, testing, *one* two three. I once saw a donkey riding on a man."
-scroll_active = false
-shortcut_keys_enabled = false
-
-[node name="Frog" type="TextureRect" parent="Chat"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 80.0
-offset_bottom = 64.0
-scale = Vector2(2, 2)
-texture = ExtResource("2_pxh1h")
-
-[node name="Pink" type="TextureRect" parent="Chat"]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 80.0
-offset_bottom = 64.0
-scale = Vector2(2, 2)
-texture = ExtResource("3_h4v20")
-
-[node name="Polygon2D" type="Polygon2D" parent="Chat"]
-position = Vector2(776, 88)
-antialiased = true
-polygon = PackedVector2Array(0, 0, 15.9305, 0, 32, 0, 16, 16)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-root_node = NodePath("../Chat")
+process_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_qsynp")
 }
 autoplay = "flash-arrow"
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="TitleMenu/Button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="TitleMenu/Button2" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Button" to="." method="_on_unpause_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Button3" to="." method="_on_quit_button_pressed"]

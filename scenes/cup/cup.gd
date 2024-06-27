@@ -6,12 +6,12 @@ var _collected = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_collected = _main.game_state(self.name, false)
+	_collected = _main.game.state(self.name, false)
 
 func _on_body_entered(_body: Node2D) -> void:
 	if !_collected:
 		_collected = true
-		_main.set_game_state(self.name, true)
+		_main.game.set_state(self.name, true)
 		visible = false
-		_main.collect_cup()
+		_main.game.collect_cup()
 		_main.sound('cup')

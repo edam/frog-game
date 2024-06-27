@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 500.0
 const JUMP_VELOCITY = 780.0
 const DECELERATE = SPEED * 5
@@ -22,11 +21,14 @@ var _default_collision_mask = 0
 @onready var _main = get_node('/root/Main')
 
 func _ready() -> void:
-	_is_pink = _main.game_state(self.name + '.pink', false)
+	_is_pink = _main.game.state(self.name + '.pink', false)
 	_last_floor_pos = position
 	_restart_pos = position
 	_default_collision_layer = self.collision_layer
 	_default_collision_mask = self.collision_mask
+	var state_pos = _main.game.state(self.name + '.restart', null)
+	if state_pos:
+		position = state_pos
 
 func _physics_process(delta):
 
@@ -42,7 +44,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			var boost = JUMP_VELOCITY + (PINK_JUMP_BOOST if _is_pink else 0)
 			velocity.y = -boost
-			get_node('/root/Main').sound('jump')
+			_main.sound('jump')
 	_jump = false
 
 	# Get the input direction and handle the movement/deceleration.
@@ -83,7 +85,7 @@ func _process(_delta):
 
 	# interact
 	if input && Input.is_action_just_pressed('up') && is_on_floor():
-		get_node('/root/Main').do_interact()
+		_main.game.do_interact()
 
 # --
 
@@ -123,12 +125,12 @@ func is_pink() -> bool:
 # switch to pink
 func be_pink(pink: bool):
 	_is_pink = pink
-	_main.set_game_state(self.name + '.pink', pink)
+	_main.game.set_state(self.name + '.pink', pink)
 
 func set_restart_point():
 	if _dead: return
 	_restart_pos = _last_floor_pos
-	_main.set_game_state(self.name + '.restart', var_to_str(_last_floor_pos))
+	_main.game.set_state(self.name + '.restart', var_to_str(_last_floor_pos))
 
 func reserect() -> void:
 	if !_dead: return

@@ -2,14 +2,15 @@ extends CanvasLayer
 
 const CHAT_SPEED = 25 # characters per second
 
+@onready var _main = get_node('/root/Main')
+
+@export_category("HUD")
 @export_range(0.0, 1.0) var fade: float = 0.0:
-	set(value):
-		if %Fade != null:
-			%Fade.color.a = value
 	get:
 		return %Fade.color.a
-
-@onready var _main = get_node('/root/Main')
+	set(value):
+		if is_inside_tree():
+			%Fade.color.a = value
 
 var _is_pink = false
 var _speaker: TextureRect
@@ -21,18 +22,17 @@ var _text_suffix: String
 var _sound: AudioStreamPlayer
 var _was_paused = false
 var _pause_fade = 0.0
-var _title = false
 
 func _ready() -> void:
-	_is_pink = _main.game_state('Player.pink', false)
+	_is_pink = _main.game.state('Player.pink', false)
 	%Chat.visible = false
 	%Templates.visible = false
 	%Chat/Polygon2D.visible = false
 	%Congrats.visible = false
 	%Congrats.process_mode = Node.PROCESS_MODE_DISABLED
 	%PauseMenu.visible = false
-	%TitleMenu.visible = true
 	%LevelMenu.visible = false
+	fade = 1
 
 func _recalc_lives():
 	_recalc_items(%Templates/Pink if _is_pink else %Templates/Frog, lives, 1, %Lives)
@@ -55,7 +55,9 @@ func _recalc_items(template: TextureRect, count: int, dir: int, container: Node2
 			container.add_child(kid)
 
 func _process(delta: float) -> void:
-	_time += delta
+
+	if !get_tree().paused:
+		_time += delta
 
 	if _text != '':
 
@@ -71,15 +73,13 @@ func _process(delta: float) -> void:
 
 	# check for presses
 	var press = Input.is_action_just_pressed('down') || Input.is_action_just_pressed('use')
-	if press && %Chat/Polygon2D.visible:
-		_main.advance_chat()
+	if press && %Chat/Polygon2D.visible && !get_tree().paused:
+		_main.game.advance_chat()
 	elif press && _text != '':
 		_time = 9999
-	if Input.is_action_just_pressed('menu') && %Chat.visible:
-		_main.end_chat()
 
 	# check player pink
-	var pink = _main.game_state('Player.pink', false)
+	var pink = _main.game.state('Player.pink', false)
 	if pink != _is_pink:
 		_is_pink = pink
 		for kid in %Lives.get_children():
@@ -87,8 +87,8 @@ func _process(delta: float) -> void:
 			kid.queue_free()
 		_recalc_lives()
 
-	if !_title && get_tree().paused && _was_paused && Input.is_action_just_pressed('menu'):
-			end_pause_menu()
+	if get_tree().paused && _was_paused && Input.is_action_just_pressed('menu'):
+		end_pause_menu()
 	_was_paused = get_tree().paused
 
 func _on_menu_button_pressed() -> void:
@@ -99,20 +99,11 @@ func _on_unpause_button_pressed() -> void:
 	end_pause_menu()
 
 func _on_quit_button_pressed() -> void:
-	get_tree().quit()
-
-func _on_start_button_pressed() -> void:
-	%LevelMenu.visible = true
-	%AnimationPlayer.play("title")
-
-func _after_title():
-	_title = false
-	%TitleMenu.visible = false
-	%LevelMenu.visible = false
 	get_tree().paused = false
-	%MenuButton.visible = true
-	%Cups.visible = true
-	%Lives.visible = true
+	_main.end_game()
+
+func _after_level_screen():
+	%LevelMenu.visible = false
 
 # --
 
@@ -160,10 +151,10 @@ func chat_off():
 func start_pause_menu():
 	if !pausable: return
 	print("pause")
-	_pause_fade = fade
-	fade = maxf(fade, 0.5)
-	%PauseMenu.visible = true
 	get_tree().paused = true
+	_pause_fade = fade
+	fade = maxf(_pause_fade, 0.5)
+	%PauseMenu.visible = true
 	%PauseMenu.find_children("*", "Button")[0].grab_focus()
 	%MenuButton.disabled = true
 
@@ -184,17 +175,16 @@ func start_congrats():
 
 # end congrats sequence
 func end_congrats():
-	get_tree().quit()
+	_main.end_game()
 
 # bring up title
-func start_title_menu():
-	print("title")
-	_title = true
+func start_level_screen():
+	print("start level screen")
+	%LevelMenu.visible = true
+	%MenuButton.visible = true
+	%Cups.visible = true
+	%Lives.visible = true
+	%Fade.visible = true
 	fade = 1
-	%TitleMenu.visible = true
-	get_tree().paused = true
-	%MenuButton.visible = false
-	%Cups.visible = false
-	%Lives.visible = false
-	%TitleMenu.find_children("*", "Button")[0].grab_focus()
-	%AnimationPlayer.play('title-reset')
+	get_tree().paused = false
+	%AnimationPlayer.play("start-level-screen")

@@ -1,13 +1,13 @@
 extends Area2D
 
-@onready var main = get_node('/root/Main')
+@onready var _main = get_node('/root/Main')
 
 func _on_body_entered(_body: Node2D) -> void:
-	main.set_interaction(self.name, func():
-		main.teleport(self.editor_description))
+	_main.game.set_interaction(self.name, func():
+		_main.game.teleport(self.editor_description))
 
 func _on_body_exited(_body: Node2D) -> void:
-	main.unset_interaction(self.name)
+	_main.game.unset_interaction(self.name)
 
 # --
 

@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi18xc4n02tyy"]
+
+[ext_resource type="Script" path="res://scenes/title/title.gd" id="1_hympd"]
+[ext_resource type="Texture2D" uid="uid://djq8emk1j03c7" path="res://scenes/hud/small-frog.png" id="1_ls5ye"]
+
+[sub_resource type="SystemFont" id="SystemFont_ytwe2"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_okl17"]
+default_font = SubResource("SystemFont_ytwe2")
+default_font_size = 40
+
+[sub_resource type="Animation" id="Animation_uf8aa"]
+resource_name = "reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q1lcb"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_after_fade"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlw5r"]
+_data = {
+"reset": SubResource("Animation_uf8aa"),
+"start": SubResource("Animation_q1lcb")
+}
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_okl17")
+script = ExtResource("1_hympd")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 96.0
+offset_right = 1005.0
+offset_bottom = 372.0
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/line_spacing = -80
+theme_override_font_sizes/font_size = 130
+text = "FROG
+GAME"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 557.0
+offset_bottom = 564.0
+rotation = -0.23911
+texture = ExtResource("1_ls5ye")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 416.0
+offset_right = 960.0
+offset_bottom = 480.0
+text = "START"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 488.0
+offset_right = 960.0
+offset_bottom = 552.0
+text = "QUIT"
+flat = true
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_qlw5r")
+}
+autoplay = "reset"
+
+[connection signal="pressed" from="Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_quit_button_pressed"]
