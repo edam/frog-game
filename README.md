@@ -27,8 +27,7 @@ Game is only 2D.  Had fun creating some custom scenes (like the water) and
 figuring out how Godot does collision, UI, animations, particle emitters,
 tiles and inheritance...
 
-Next up, I want to add game load/save (already have game state) and move
-game to an instanced scene (rather than main) so that it can be restarted.
+Next up, I want to add game load/save (already have game state).
 
 💙 Credits
 -------
@@ -38,3 +37,5 @@ start for absolute Godot beginners.
 
 Assets are thanks to the public domain [Pixel Adventure
 1](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+
+For Ben.
